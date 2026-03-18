@@ -25,6 +25,8 @@ a:hover{opacity:.55}
 /* LOADER — simple pulse */
 .loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s}
 .loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.loader{animation:loaderHide 0s 2s forwards}
+@keyframes loaderHide{to{opacity:0;visibility:hidden;pointer-events:none}}
 .loader{background:linear-gradient(135deg,#FF6B81,#FF4D6D,#C7365A,#FF8FA3);background-size:300% 300%;animation:gradShift 6s ease infinite}
 .loader svg{width:80px;height:auto;fill:var(--white);animation:ldPulse 1.2s ease-in-out infinite}
 @keyframes gradShift{0%{background-position:0% 0%}25%{background-position:100% 0%}50%{background-position:100% 100%}75%{background-position:0% 100%}100%{background-position:0% 0%}}
@@ -60,14 +62,14 @@ a:hover{opacity:.55}
 .hero{padding-top:calc(92px + 100px);padding-bottom:80px;padding-left:24px;padding-right:24px;text-align:center;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 .hero h1{font-size:clamp(38px,7vw,72px);font-weight:700;letter-spacing:-2px;line-height:1.02;margin-bottom:24px;max-width:740px}
 .hero h1 em{font-style:normal;color:var(--coral)}
-.hero h1 .hw{display:inline-block;opacity:0;transform:translateY(40px) rotateX(15deg);animation:heroWord .8s var(--ease-out) forwards;animation-delay:var(--d)}
+.hero h1 .hw{display:inline-block}
 @keyframes heroWord{to{opacity:1;transform:translateY(0) rotateX(0)}}
-.hero-sub{font-size:15px;font-weight:300;line-height:1.65;color:var(--mid);max-width:440px;margin-bottom:44px;opacity:0;animation:fadeUp .9s var(--ease-out) 1s forwards}
-.hero-actions{display:flex;gap:20px;align-items:center;opacity:0;animation:fadeUp .9s var(--ease-out) 1.2s forwards}
+.hero-sub{font-size:15px;font-weight:300;line-height:1.65;color:var(--mid);max-width:440px;margin-bottom:44px}
+.hero-actions{display:flex;gap:20px;align-items:center}
 .btn-p{display:inline-flex;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.3px;color:var(--white);background:var(--black);padding:15px 34px;border-radius:980px;text-decoration:none;transition:background .25s var(--ease),transform .25s var(--ease)}.btn-p:hover{background:var(--coral);opacity:1;transform:translateY(-2px)}
 .btn-s{font-size:14px;font-weight:400;color:var(--coral)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.phones{position:relative;width:100%;max-width:740px;height:520px;margin-top:60px;opacity:0;animation:fadeUp 1.2s var(--ease-out) 1.5s forwards}
+.phones{position:relative;width:100%;max-width:740px;height:520px;margin-top:60px}
 .ph{position:absolute;width:240px;height:490px;border-radius:40px;overflow:hidden;box-shadow:0 20px 60px rgba(18,18,18,.12),0 0 0 .5px rgba(0,0,0,.08);background:var(--gray)}
 .ph::before{content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;background:linear-gradient(170deg,#fafafa 0%,#eee 100%);border-radius:32px}
 .ph::after{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:80px;height:24px;background:var(--gray);border-radius:0 0 14px 14px;z-index:2}
@@ -352,7 +354,7 @@ a:hover{opacity:.55}
 
 <!-- HERO -->
 <section class="hero">
-  <h1 id="heroH1"></h1>
+  <h1 id="heroH1">Land new clients before they even know they <em>need</em> you</h1>
   <p class="hero-sub">Real freelance opportunities matched to your skillset. In real-time 24/7. See them before anyone else.</p>
   <div class="hero-actions"><a href="/app" class="btn-p">Register for beta</a><a href="#features" class="btn-s">How it works</a></div>
   <div class="phones"><div class="ph ph-1"><div class="ph-screen">
@@ -617,7 +619,7 @@ setTimeout(function(){var l=document.getElementById("loader");if(l)l.classList.a
 document.addEventListener("click",function(){var l=document.getElementById("loader");if(l&&!l.classList.contains("done"))l.classList.add("done")});
 function toggleMenu(){var m=document.getElementById("mobileMenu");var b=document.getElementById("burg");if(m)m.classList.toggle("open");if(b)b.classList.toggle("open")}
 var ticking=false;window.addEventListener("scroll",function(){if(!ticking){requestAnimationFrame(function(){var p=document.querySelector(".phones");if(p){var r=p.getBoundingClientRect();var c=r.top+r.height/2;var v=window.innerHeight;var pr=(v/2-c)/v;var p1=p.querySelector(".ph-1");var p3=p.querySelector(".ph-3");if(p1)p1.style.transform="translateY("+(-pr*20)+"px)";if(p3)p3.style.transform="translateY("+(pr*20)+"px)"}ticking=false});ticking=true}});
-var se=document.querySelectorAll(".sr-up");var so=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.style.opacity="1";e.target.style.transform="translateY(0)"}})},{threshold:0.1});se.forEach(function(el){el.style.opacity="0";el.style.transform="translateY(30px)";el.style.transition="opacity .8s ease,transform .8s ease";so.observe(el)});
+var se=document.querySelectorAll(".sr-up");var so=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.style.opacity="1";e.target.style.transform="translateY(0)"}})},{threshold:0.1});se.forEach(function(el){el.style.transition="opacity .8s ease,transform .8s ease";so.observe(el)});
 function openLegal(id){var e=document.getElementById("lp-"+id);if(e)e.classList.add("open")}
 function closeLegal(){document.querySelectorAll(".legal-page").forEach(function(p){p.classList.remove("open")})}
 function openBeta(){var o=document.getElementById("betaOverlay");if(o){o.classList.add("open");var f=document.getElementById("betaForm");var s=document.getElementById("betaSuccess");if(f)f.style.display="block";if(s)s.style.display="none"}}
