@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ping — Documentation | How it works</title>
+<meta name="description" content="Ping documentation — how we source leads, score opportunities, and deliver AI-powered freelance intelligence.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{--coral:#FF4D6D;--rose:#FF8FA3;--deep:#C7365A;--blush:#FFF0F3;--bk:#121212;--mid:#555;--lt:#999;--rl:#eee;--bg:#FAFAFA;--wh:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Helvetica,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--bk);line-height:1.6}
+a{color:var(--coral);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+.doc-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rl);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.doc-nav-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--bk);text-decoration:none}
+.doc-nav-logo svg{width:20px;fill:var(--coral)}
+.doc-nav-back{font-size:13px;font-weight:500;color:var(--lt)}
+
+/* HERO */
+.doc-hero{padding:100px 24px 48px;max-width:800px;margin:0 auto}
+.doc-hero h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:12px}
+.doc-hero h1 i{font-style:normal;color:var(--coral)}
+.doc-hero p{font-size:18px;font-weight:300;color:var(--mid);max-width:560px;line-height:1.55}
+
+/* TABS */
+.doc-tabs{position:sticky;top:52px;z-index:50;background:var(--bg);border-bottom:1px solid var(--rl);padding:0 24px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+.doc-tabs-inner{max-width:800px;margin:0 auto;display:flex;gap:0}
+.doc-tab{font-size:13px;font-weight:600;color:var(--lt);padding:14px 16px;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.doc-tab.on{color:var(--coral);border-bottom-color:var(--coral)}
+
+/* CONTENT */
+.doc-content{max-width:800px;margin:0 auto;padding:32px 24px 80px}
+.doc-section{display:none}
+.doc-section.on{display:block}
+.doc-section h2{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
+.doc-section h3{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-top:32px;margin-bottom:8px}
+.doc-section h4{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--lt);margin-top:24px;margin-bottom:8px}
+.doc-section p{font-size:15px;font-weight:300;color:var(--mid);margin-bottom:16px}
+.doc-section ul{list-style:none;margin-bottom:20px}
+.doc-section li{font-size:14px;font-weight:300;color:var(--mid);padding:8px 0 8px 20px;border-bottom:1px solid var(--rl);position:relative}
+.doc-section li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--coral)}
+
+/* CARDS */
+.doc-card{background:var(--wh);border-radius:20px;padding:24px;margin-bottom:16px;border:1px solid var(--rl)}
+.doc-card-coral{background:linear-gradient(135deg,#FF6B81,#FF4D6D,#C7365A,#FF8FA3);background-size:300% 300%;animation:gradShift 8s ease infinite;color:white;border:none}
+.doc-card-coral p,.doc-card-coral li{color:rgba(255,255,255,.75)}
+.doc-card-coral li::before{background:white}
+.doc-card-coral h3,.doc-card-coral h4{color:rgba(255,255,255,.5)}
+@keyframes gradShift{0%{background-position:0% 0%}25%{background-position:100% 0%}50%{background-position:100% 100%}75%{background-position:0% 100%}100%{background-position:0% 0%}}
+
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+@media(max-width:600px){.doc-grid{grid-template-columns:1fr}}
+
+/* FLOW DIAGRAM */
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0}
+.flow-step{display:flex;align-items:flex-start;gap:16px;position:relative;padding-bottom:20px}
+.flow-step::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--rl)}
+.flow-step:last-child::before{display:none}
+.flow-num{width:40px;height:40px;border-radius:50%;background:var(--coral);color:white;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;z-index:1}
+.flow-body{flex:1;padding-top:8px}
+.flow-body strong{font-size:14px;font-weight:700;display:block;margin-bottom:2px}
+.flow-body span{font-size:13px;font-weight:300;color:var(--mid)}
+
+/* SCORE BARS */
+.score-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--rl)}
+.score-label{font-size:13px;font-weight:600;width:120px;flex-shrink:0}
+.score-bar{flex:1;height:8px;background:var(--rl);border-radius:4px;overflow:hidden}
+.score-fill{height:100%;border-radius:4px;transition:width .5s}
+.score-val{font-size:13px;font-weight:800;width:36px;text-align:right}
+
+/* TABLE */
+.doc-table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:13px}
+.doc-table th{text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid var(--bk);font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--lt)}
+.doc-table td{padding:10px 12px;border-bottom:1px solid var(--rl);font-weight:300;color:var(--mid)}
+.doc-table tr:hover td{background:var(--blush)}
+
+/* STAT */
+.stat-row{display:flex;gap:12px;margin-bottom:16px}
+.stat-box{flex:1;background:var(--wh);border-radius:16px;padding:20px;text-align:center;border:1px solid var(--rl)}
+.stat-num{font-size:32px;font-weight:800;color:var(--coral);letter-spacing:-1px}
+.stat-label{font-size:11px;font-weight:500;color:var(--lt);margin-top:4px}
+
+.tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--blush);color:var(--coral)}
+.tag-green{background:#dcfce7;color:#16a34a}
+.tag-amber{background:#fef3c7;color:#d97706}
+</style>
+</head>
+<body>
+
+<nav class="doc-nav">
+  <a href="/" class="doc-nav-logo">
+    <svg viewBox="0 0 215.54 197.68"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg>
+    Ping docs
+  </a>
+  <a href="/" class="doc-nav-back">← Back to Ping</a>
+</nav>
+
+<div class="doc-hero">
+  <h1>How Ping finds your next <i>client</i></h1>
+  <p>Real-time buying signals, AI-scored and matched to your skills. Here's exactly how it works under the hood.</p>
+</div>
+
+<div class="doc-tabs">
+  <div class="doc-tabs-inner">
+    <button class="doc-tab on" data-tab="overview">Overview</button>
+    <button class="doc-tab" data-tab="pipeline">Data pipeline</button>
+    <button class="doc-tab" data-tab="scoring">Scoring rubric</button>
+    <button class="doc-tab" data-tab="sources">Data sources</button>
+    <button class="doc-tab" data-tab="contacts">Contact intel</button>
+    <button class="doc-tab" data-tab="messages">AI messages</button>
+    <button class="doc-tab" data-tab="pricing">Pricing</button>
+  </div>
+</div>
+
+<div class="doc-content">
+
+  <!-- ═══ OVERVIEW ═══ -->
+  <div class="doc-section on" id="sec-overview">
+    <h2>The freelance lead problem</h2>
+    <p>1.57 billion people freelance globally. Most find clients through cold outreach, referrals, or waiting for inbound. By the time a freelancer sees an opportunity, dozens have already reached out.</p>
+
+    <div class="doc-card doc-card-coral" style="margin:24px 0">
+      <h3 style="color:rgba(255,255,255,.5);font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">The Ping advantage</h3>
+      <p style="font-size:22px;font-weight:800;color:white;line-height:1.2">Freelancers who respond first are 21× more likely to win the client.</p>
+      <p>Ping surfaces buying signals before they become job posts — and delivers them with the decision-maker's contact and a ready-to-send intro.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Signal sources</div></div>
+      <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Daily pings</div></div>
+      <div class="stat-box"><div class="stat-num">5</div><div class="stat-label">AI messages per ping</div></div>
+    </div>
+
+    <h3>What is a "ping"?</h3>
+    <p>A ping is a buying signal — an event that indicates a company is likely to need freelance services. We detect 6 types:</p>
+
+    <div class="doc-grid">
+      <div class="doc-card"><strong>🏢 New registration</strong><p style="margin:0;font-size:13px">New ABN/business registered with no website. Needs brand + web immediately.</p></div>
+      <div class="doc-card"><strong>🌐 Domain purchased</strong><p style="margin:0;font-size:13px">Domain bought with no live site. Launching soon, needs design.</p></div>
+      <div class="doc-card"><strong>💰 Funding round</strong><p style="margin:0;font-size:13px">Seed or Series A closed. Budget unlocked for creative work.</p></div>
+      <div class="doc-card"><strong>👋 Leadership change</strong><p style="margin:0;font-size:13px">CMO/CTO departure. Interim creative support needed urgently.</p></div>
+      <div class="doc-card"><strong>📋 Hiring creative</strong><p style="margin:0;font-size:13px">Job posted for designer/developer. Often open to freelance too.</p></div>
+      <div class="doc-card"><strong>🔄 Tech migration</strong><p style="margin:0;font-size:13px">Switching platforms or rebranding. Needs specialist help.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ DATA PIPELINE ═══ -->
+  <div class="doc-section" id="sec-pipeline">
+    <h2>Data pipeline</h2>
+    <p>Every day at 6:00 AM AEST, Ping's automated pipeline runs a 90-minute process to find, score, enrich, and deliver fresh pings.</p>
+
+    <div class="flow">
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-body"><strong>6:00 AM — Signal collection</strong><span>Pull raw data from 6 sources: new ABN registrations, WHOIS domain records, job board feeds, funding databases, Google Alerts, and marketplace listings.</span></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-body"><strong>6:15 AM — Deduplication</strong><span>Cross-reference against the last 7 days of pings. Remove duplicates, filter out already-contacted companies, and validate data integrity.</span></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-body"><strong>6:30 AM — AI scoring</strong><span>Claude Sonnet analyses each signal across 5 dimensions (freshness, budget, match, urgency, reachability). Signals below 4.0 are discarded.</span></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-body"><strong>6:45 AM — Contact enrichment</strong><span>Proxycurl identifies 2-3 decision-makers per company via LinkedIn. We pull their role, posting history, communication tone, and activity level.</span></div></div>
+      <div class="flow-step"><div class="flow-num">5</div><div class="flow-body"><strong>7:00 AM — Message generation</strong><span>Claude generates 5 personalised outreach messages per ping, each with a different strategic approach (direct, warm, value-led, portfolio-forward, brief).</span></div></div>
+      <div class="flow-step"><div class="flow-num">6</div><div class="flow-body"><strong>7:15 AM — Skill matching</strong><span>Each ping is matched against user skill profiles. A designer sees different pings than a developer. Location and remote preferences are applied.</span></div></div>
+      <div class="flow-step"><div class="flow-num">7</div><div class="flow-body"><strong>7:30 AM — Delivery</strong><span>Fresh pings appear in your feed. Push notifications sent to matched users. Pro subscribers get the daily rundown email with top 5 pings.</span></div></div>
+    </div>
+
+    <div class="doc-card">
+      <h4>Pipeline performance</h4>
+      <table class="doc-table">
+        <tr><th>Metric</th><th>Target</th><th>Current</th></tr>
+        <tr><td>Raw signals ingested</td><td>500+/day</td><td><span class="tag-green tag">On track</span></td></tr>
+        <tr><td>Qualified pings generated</td><td>50+/day</td><td><span class="tag-green tag">On track</span></td></tr>
+        <tr><td>Pipeline runtime</td><td>&lt; 90 mins</td><td><span class="tag-green tag">~75 mins</span></td></tr>
+        <tr><td>Score accuracy (user feedback)</td><td>&gt; 80%</td><td><span class="tag-amber tag">Beta</span></td></tr>
+        <tr><td>Contact enrichment rate</td><td>&gt; 70%</td><td><span class="tag-amber tag">Beta</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══ SCORING RUBRIC ═══ -->
+  <div class="doc-section" id="sec-scoring">
+    <h2>Scoring rubric</h2>
+    <p>Every ping receives a composite score from 0 to 10, calculated across 5 dimensions. Each dimension is scored 0-2 by Claude Sonnet, then normalised to a 10-point scale.</p>
+
+    <div class="doc-card" style="margin:20px 0">
+      <div class="score-row"><div class="score-label">Signal freshness</div><div class="score-bar"><div class="score-fill" style="width:100%;background:#22c55e"></div></div><div class="score-val">/ 2</div></div>
+      <p style="font-size:12px;margin:6px 0 16px 0">How recent is the buying trigger? Within 6 hours = 2.0, within 24h = 1.5, within 48h = 1.0, older = 0.5</p>
+
+      <div class="score-row"><div class="score-label">Budget likelihood</div><div class="score-bar"><div class="score-fill" style="width:100%;background:#22c55e"></div></div><div class="score-val">/ 2</div></div>
+      <p style="font-size:12px;margin:6px 0 16px 0">How likely is there budget? Funding round = 2.0, active hiring = 1.5, new registration = 1.0, domain only = 0.5</p>
+
+      <div class="score-row"><div class="score-label">Skill match</div><div class="score-bar"><div class="score-fill" style="width:100%;background:#22c55e"></div></div><div class="score-val">/ 2</div></div>
+      <p style="font-size:12px;margin:6px 0 16px 0">How closely does this match your profile? Direct match = 2.0, adjacent skill = 1.5, tangential = 1.0</p>
+
+      <div class="score-row"><div class="score-label">Urgency</div><div class="score-bar"><div class="score-fill" style="width:100%;background:#22c55e"></div></div><div class="score-val">/ 2</div></div>
+      <p style="font-size:12px;margin:6px 0 16px 0">How time-sensitive? Active hiring + no website = 2.0, leadership departure = 1.5, funding = 1.0</p>
+
+      <div class="score-row"><div class="score-label">Reachability</div><div class="score-bar"><div class="score-fill" style="width:100%;background:#22c55e"></div></div><div class="score-val">/ 2</div></div>
+      <p style="font-size:12px;margin:6px 0 0 0">How accessible is the decision-maker? Email + LinkedIn = 2.0, LinkedIn only = 1.5, Instagram only = 1.0</p>
+    </div>
+
+    <h3>Score interpretation</h3>
+    <div class="doc-grid">
+      <div class="doc-card" style="border-left:4px solid #22c55e"><strong style="color:#22c55e">8.0 — 10.0</strong><p style="margin:4px 0 0;font-size:13px">High confidence. Act immediately. These pings have strong signals, clear budget indicators, and accessible contacts.</p></div>
+      <div class="doc-card" style="border-left:4px solid #f59e0b"><strong style="color:#f59e0b">5.0 — 7.9</strong><p style="margin:4px 0 0;font-size:13px">Moderate confidence. Worth investigating. Signal is real but may need more research before outreach.</p></div>
+      <div class="doc-card" style="border-left:4px solid #ef4444"><strong style="color:#ef4444">Below 5.0</strong><p style="margin:4px 0 0;font-size:13px">Low confidence. Auto-filtered from your feed. Only shown if no higher-quality pings are available.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ DATA SOURCES ═══ -->
+  <div class="doc-section" id="sec-sources">
+    <h2>Data sources</h2>
+    <p>All data comes from publicly available sources. We never scrape private information or access data behind authentication walls.</p>
+
+    <table class="doc-table">
+      <tr><th>Source</th><th>Signal type</th><th>Frequency</th><th>Coverage</th></tr>
+      <tr><td><strong>ABR / OpenCorporates</strong></td><td>New business registrations</td><td>Daily</td><td>Australia-wide</td></tr>
+      <tr><td><strong>AusRegistry WHOIS</strong></td><td>New .com.au domains</td><td>Daily</td><td>All .com.au</td></tr>
+      <tr><td><strong>Seek / Indeed / Jooble</strong></td><td>Creative/tech hiring</td><td>6-hourly</td><td>Australia + Remote</td></tr>
+      <tr><td><strong>Crunchbase</strong></td><td>Funding rounds</td><td>Daily</td><td>Global (AU focus)</td></tr>
+      <tr><td><strong>Google Alerts</strong></td><td>Leadership changes, rebrands</td><td>Real-time</td><td>Global</td></tr>
+      <tr><td><strong>Airtasker / Upwork</strong></td><td>Active freelance requests</td><td>6-hourly</td><td>Australia + Global</td></tr>
+    </table>
+
+    <h3>Data quality</h3>
+    <p>Raw signals go through 3 quality gates before becoming a ping:</p>
+    <ul>
+      <li><strong>Validation gate</strong> — is the data complete and well-formed? Company name, location, and at least one signal indicator must be present.</li>
+      <li><strong>Relevance gate</strong> — does this company operate in an industry where freelance design/dev/marketing services are typically needed?</li>
+      <li><strong>Score gate</strong> — does the AI-computed score exceed 4.0/10? Below this threshold, the signal-to-noise ratio is too low to be useful.</li>
+    </ul>
+  </div>
+
+  <!-- ═══ CONTACT INTEL ═══ -->
+  <div class="doc-section" id="sec-contacts">
+    <h2>Contact intelligence</h2>
+    <p>Each ping includes 2-3 decision-maker contacts enriched with actionable intelligence. Here's what we provide for each contact:</p>
+
+    <div class="doc-card" style="margin:20px 0">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--deep));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:white">SC</div>
+        <div><strong style="font-size:16px">Sarah Chen</strong><br><span style="font-size:12px;color:var(--lt)">Founder & CEO · Kōso Ferments</span></div>
+        <span class="tag" style="margin-left:auto">Best contact</span>
+      </div>
+      <div class="doc-grid" style="margin-bottom:12px">
+        <div style="background:var(--bg);border-radius:10px;padding:10px"><div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--lt);margin-bottom:2px">Tone</div><div style="font-size:13px">Casual but professional</div></div>
+        <div style="background:var(--bg);border-radius:10px;padding:10px"><div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--lt);margin-bottom:2px">Activity</div><div style="font-size:13px">Very active — 3-5 posts/week</div></div>
+      </div>
+      <div style="background:var(--bg);border-radius:10px;padding:10px;margin-bottom:8px"><div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--lt);margin-bottom:2px">Posts about</div><div style="font-size:13px;color:var(--mid)">Startup journey, design inspiration, Envato alumni network</div></div>
+      <div style="background:var(--blush);border-radius:10px;padding:10px"><div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--coral);margin-bottom:2px">Key insight</div><div style="font-size:13px;color:var(--mid)">Recently posted about 'building in public'. Responds within 24h on LinkedIn. Ex-Envato so appreciates design craft. Lead with portfolio examples.</div></div>
+    </div>
+
+    <h3>How we source contacts</h3>
+    <ul>
+      <li><strong>LinkedIn enrichment</strong> via Proxycurl — company employees, roles, activity level, posting topics</li>
+      <li><strong>Public directories</strong> — company websites, ASIC records, Seek job listings with contact emails</li>
+      <li><strong>AI analysis</strong> — Claude analyses posting history to determine tone, responsiveness, and optimal approach strategy</li>
+    </ul>
+
+    <h3>Best channel recommendation</h3>
+    <p>For each contact, Ping recommends the best outreach channel (LinkedIn, email, Instagram, or Twitter) based on where the person is most active and responsive, not just where their contact info is available.</p>
+  </div>
+
+  <!-- ═══ AI MESSAGES ═══ -->
+  <div class="doc-section" id="sec-messages">
+    <h2>AI-crafted messages</h2>
+    <p>Every ping comes with 5 pre-written outreach messages, each taking a different strategic approach. All messages are personalised to the specific company, contact, and your skill profile.</p>
+
+    <h3>The 5 message strategies</h3>
+    <div class="doc-grid">
+      <div class="doc-card"><strong>🎯 Direct & confident</strong><p style="margin:4px 0 0;font-size:13px">Bold opener, lead with credentials and speed. Best for urgent pings (departures, no-website signals).</p></div>
+      <div class="doc-card"><strong>💛 Warm & personal</strong><p style="margin:4px 0 0;font-size:13px">Human connection, shared interests. Best for founders and small companies where rapport matters.</p></div>
+      <div class="doc-card"><strong>📊 Value-led opener</strong><p style="margin:4px 0 0;font-size:13px">Lead with free insight before asking. Best for skeptical or senior contacts who get pitched often.</p></div>
+      <div class="doc-card"><strong>🖼️ Portfolio-forward</strong><p style="margin:4px 0 0;font-size:13px">Show, don't tell. Reference specific similar work. Best when you have directly relevant case studies.</p></div>
+      <div class="doc-card"><strong>⚡ Short & sweet</strong><p style="margin:4px 0 0;font-size:13px">2-3 sentences, no pressure. Best for busy executives or when you're unsure of the opportunity quality.</p></div>
+    </div>
+
+    <h3>Message quality</h3>
+    <p>Every message is generated by Claude Sonnet and follows these principles:</p>
+    <ul>
+      <li>Personalised to the company, not generic templates</li>
+      <li>References the specific buying signal (funding, registration, departure)</li>
+      <li>Keeps to 2-3 sentences — respects the recipient's time</li>
+      <li>Never uses salesy language, false urgency, or manipulation</li>
+      <li>Adapts tone to match the contact's communication style</li>
+    </ul>
+  </div>
+
+  <!-- ═══ PRICING ═══ -->
+  <div class="doc-section" id="sec-pricing">
+    <h2>Pricing</h2>
+    <p>Ping is designed to pay for itself with your first client won.</p>
+
+    <div class="doc-grid" style="margin:24px 0">
+      <div class="doc-card" style="text-align:center">
+        <h3 style="margin-top:0">Free</h3>
+        <div style="font-size:36px;font-weight:800;margin:8px 0">$0</div>
+        <p style="font-size:13px;margin-bottom:16px">Forever free</p>
+        <ul style="text-align:left">
+          <li>10 pings per day</li>
+          <li>1 skill profile</li>
+          <li>AI-crafted messages</li>
+          <li>Contact details</li>
+          <li>Score breakdown</li>
+        </ul>
+      </div>
+      <div class="doc-card doc-card-coral" style="text-align:center">
+        <span class="tag" style="background:rgba(255,255,255,.2);color:white;margin-bottom:8px;display:inline-block">Most popular</span>
+        <h3 style="margin-top:0;color:white">Pro</h3>
+        <div style="font-size:36px;font-weight:800;margin:8px 0">$4.95</div>
+        <p style="font-size:13px;margin-bottom:16px;color:rgba(255,255,255,.6)">per month</p>
+        <ul style="text-align:left">
+          <li>Unlimited pings</li>
+          <li>Unlimited skill profiles</li>
+          <li>Live push notifications</li>
+          <li>Daily rundown email</li>
+          <li>Extra contact data</li>
+          <li>Priority matching</li>
+          <li>Saved leads CRM</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>ROI calculator</h3>
+    <p>Average freelance project value in Australia: <strong>$5,000-15,000</strong>. If Ping helps you land just one extra client per quarter, the ROI on $4.95/month is <strong>250× to 750×</strong>.</p>
+  </div>
+
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.doc-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.doc-tab').forEach(function(t) { t.classList.remove('on'); });
+    document.querySelectorAll('.doc-section').forEach(function(s) { s.classList.remove('on'); });
+    this.classList.add('on');
+    document.getElementById('sec-' + this.dataset.tab).classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

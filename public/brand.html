@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ping — Brand System</title>
+<meta name="description" content="Ping brand guidelines — colour, typography, components, motion, and voice.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{--coral:#FF4D6D;--rose:#FF6B81;--blush:#FF8FA3;--petal:#FFB3C1;--cloud:#FFF0F3;--deep:#C7365A;--wine:#9D1E42;--bk:#121212;--charcoal:#1E1E1E;--mid:#555;--lt:#999;--silver:#CCC;--rl:#EEEEEE;--bg:#FAFAFA;--wh:#FFFFFF;--grn:#22C55E;--amb:#F59E0B;--red:#EF4444;--blue:#2563EB;--r-card:24px;--r-input:16px;--r-pill:999px;--r-chip:999px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:var(--bk);color:var(--wh);line-height:1.5}
+
+/* NAV */
+.bn{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(18,18,18,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+.bn a{color:var(--lt);font-size:13px;font-weight:500;text-decoration:none}
+.bn a:hover{color:var(--wh)}
+.bn-logo{display:flex;align-items:center;gap:8px;color:var(--wh);font-weight:800;font-size:15px;text-decoration:none}
+.bn-logo svg{width:18px;fill:var(--coral)}
+
+/* HERO */
+.hero{padding:140px 32px 80px;max-width:1100px;margin:0 auto}
+.hero-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:16px}
+.hero h1{font-size:clamp(48px,7vw,80px);font-weight:800;letter-spacing:-3px;line-height:.95;margin-bottom:20px}
+.hero h1 i{font-style:normal;background:linear-gradient(135deg,var(--coral),var(--blush));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;font-weight:300;color:var(--lt);max-width:500px;line-height:1.6}
+
+/* SECTIONS */
+.sec{padding:80px 32px;max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,.06)}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:8px}
+.sec h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1.5px;margin-bottom:8px}
+.sec p{font-size:15px;font-weight:300;color:var(--lt);max-width:600px;margin-bottom:32px;line-height:1.6}
+
+/* GRID */
+.grid{display:grid;gap:16px;margin-bottom:32px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+@media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* COLOUR SWATCHES */
+.swatch{border-radius:20px;overflow:hidden}
+.swatch-colour{height:140px;display:flex;align-items:flex-end;padding:16px}
+.swatch-info{padding:14px 16px;background:var(--charcoal);border-radius:0 0 20px 20px}
+.swatch-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.swatch-hex{font-size:12px;font-weight:400;color:var(--lt);font-family:'SF Mono',Monaco,monospace}
+.swatch-role{font-size:11px;color:var(--silver);margin-top:4px}
+.swatch-big .swatch-colour{height:220px}
+
+/* GRADIENT CARD */
+.grad-card{border-radius:24px;padding:32px;position:relative;overflow:hidden}
+.grad-anim{background:linear-gradient(135deg,var(--rose),var(--coral),var(--deep),var(--blush));background-size:300% 300%;animation:gs 8s ease infinite}
+@keyframes gs{0%{background-position:0% 0%}25%{background-position:100% 0%}50%{background-position:100% 100%}75%{background-position:0% 100%}100%{background-position:0% 0%}}
+
+/* TYPOGRAPHY */
+.type-specimen{margin-bottom:32px}
+.type-big{font-size:clamp(56px,8vw,96px);font-weight:800;letter-spacing:-4px;line-height:.9;margin-bottom:8px}
+.type-med{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-1px;margin-bottom:8px}
+.type-body{font-size:15px;font-weight:300;color:var(--lt);line-height:1.65;max-width:560px}
+.type-meta{font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.5px;margin-top:8px;font-family:'SF Mono',Monaco,monospace}
+
+.weight-row{display:flex;align-items:baseline;gap:24px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.weight-row span:first-child{font-size:32px;width:200px;flex-shrink:0}
+.weight-row span:last-child{font-size:12px;color:var(--mid);font-family:'SF Mono',Monaco,monospace}
+
+/* SCALE */
+.scale-row{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.scale-size{font-size:12px;color:var(--coral);font-family:'SF Mono',Monaco,monospace;width:80px;flex-shrink:0}
+.scale-weight{font-size:11px;color:var(--mid);width:48px;flex-shrink:0}
+.scale-sample{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* SPACING */
+.space-row{display:flex;align-items:center;gap:16px;padding:10px 0}
+.space-bar{height:12px;background:var(--coral);border-radius:6px;opacity:.6}
+.space-label{font-size:12px;color:var(--lt);font-family:'SF Mono',Monaco,monospace;width:80px;flex-shrink:0}
+.space-val{font-size:12px;color:var(--mid);font-family:'SF Mono',Monaco,monospace;width:50px}
+
+/* RADIUS */
+.radius-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.radius-box{width:80px;height:80px;border:2px solid var(--coral);display:flex;align-items:center;justify-content:center;font-size:10px;font-family:'SF Mono',Monaco,monospace;color:var(--lt)}
+
+/* COMPONENT CARDS */
+.comp{background:var(--charcoal);border-radius:24px;padding:24px;margin-bottom:16px}
+.comp-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:12px}
+
+/* BUTTONS */
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.btn{font-family:inherit;font-size:15px;font-weight:700;padding:14px 28px;border-radius:var(--r-pill);border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn-coral{background:var(--coral);color:white}
+.btn-grad{background:linear-gradient(135deg,var(--rose),var(--coral),var(--deep));color:white}
+.btn-dark{background:var(--bk);color:white}
+.btn-outline{background:transparent;border:1.5px solid var(--rl);color:var(--wh)}
+.btn-ghost{background:transparent;color:var(--coral);border:1.5px solid var(--coral)}
+.btn-sm{font-size:12px;padding:8px 16px}
+
+/* CHIPS */
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{font-size:13px;font-weight:600;padding:8px 16px;border-radius:var(--r-chip)}
+.chip-coral{background:var(--coral);color:white}
+.chip-outline{background:transparent;border:1.5px solid var(--rl);color:var(--wh)}
+.chip-blush{background:var(--cloud);color:var(--coral)}
+.chip-dark{background:var(--charcoal);color:var(--wh)}
+
+/* CARDS */
+.card-demo{background:var(--wh);border-radius:var(--r-card);overflow:hidden;color:var(--bk)}
+.card-demo-hero{height:120px;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;color:rgba(255,255,255,.15)}
+.card-demo-body{padding:16px}
+.card-demo-body h4{font-size:16px;font-weight:800;margin-bottom:2px}
+.card-demo-body p{font-size:12px;color:var(--mid);margin:0}
+
+/* SCORE */
+.score-demo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.score-bar{flex:1;height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px}
+.score-num{font-size:13px;font-weight:800;min-width:28px}
+
+/* LOGO */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.logo-box{height:200px;border-radius:24px;display:flex;align-items:center;justify-content:center;position:relative}
+.logo-box svg{width:60px}
+.logo-box-label{position:absolute;bottom:12px;left:12px;font-size:10px;font-weight:600;color:var(--lt);letter-spacing:.5px}
+
+/* MOTION */
+.motion-demo{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.motion-box{width:80px;height:80px;background:var(--coral);border-radius:16px;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.motion-box:nth-child(2){transition-timing-function:cubic-bezier(.25,1,.5,1)}
+.motion-box:nth-child(3){transition-timing-function:ease-in-out}
+.motion-box:hover{transform:scale(1.15)}
+.motion-box:active{transform:scale(.9)}
+
+/* VOICE TABLE */
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.voice-card{border-radius:16px;padding:20px}
+.voice-do{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
+.voice-dont{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)}
+.voice-card h4{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.voice-do h4{color:var(--grn)}
+.voice-dont h4{color:var(--red)}
+.voice-card p{font-size:13px;color:var(--lt);margin:0;font-style:italic}
+
+/* FOOTER */
+.ft{padding:40px 32px;text-align:center;border-top:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--mid)}
+
+@media(max-width:768px){
+  .hero,.sec{padding-left:20px;padding-right:20px}
+  .logo-grid,.voice-grid{grid-template-columns:1fr}
+  .weight-row{flex-direction:column;gap:4px}
+  .weight-row span:first-child{width:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="bn">
+  <a href="/" class="bn-logo">
+    <svg viewBox="0 0 215.54 197.68"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg>
+    Ping Brand
+  </a>
+  <a href="/">← Back to Ping</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Brand System v1.0</div>
+  <h1>Ping is <i>bold</i>,<br>warm, and<br>unmissable</h1>
+  <p>This is the definitive guide to how Ping looks, speaks, and feels. Every colour, every curve, every word — designed to make freelancers feel like they've found an unfair advantage.</p>
+</div>
+
+<!-- ═══ COLOUR ═══ -->
+<div class="sec" id="colour">
+  <div class="sec-label">01 — Colour</div>
+  <h2>Colour palette</h2>
+  <p>Coral is confidence. It's not red (aggressive) or pink (soft). It sits in the space between — energetic, warm, and impossible to ignore.</p>
+
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="swatch swatch-big"><div class="swatch-colour grad-anim" style="height:220px"><span style="font-size:28px;font-weight:800;color:white">Primary</span></div><div class="swatch-info"><div class="swatch-name">Coral — Animated gradient</div><div class="swatch-hex">#FF6B81 → #FF4D6D → #C7365A → #FF8FA3</div><div class="swatch-role">Hero cards, CTAs, paywall, splash screen</div></div></div>
+    <div class="swatch swatch-big"><div class="swatch-colour" style="height:220px;background:var(--coral)"><span style="font-size:28px;font-weight:800;color:white">Coral</span></div><div class="swatch-info"><div class="swatch-name">Coral — Static</div><div class="swatch-hex">#FF4D6D</div><div class="swatch-role">Buttons, links, active states, badges, score highlights</div></div></div>
+  </div>
+
+  <div class="grid g4">
+    <div class="swatch"><div class="swatch-colour" style="background:var(--rose)"></div><div class="swatch-info"><div class="swatch-name">Rose</div><div class="swatch-hex">#FF6B81</div><div class="swatch-role">Gradient start</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--blush)"></div><div class="swatch-info"><div class="swatch-name">Blush</div><div class="swatch-hex">#FF8FA3</div><div class="swatch-role">Gradient end</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--petal)"></div><div class="swatch-info"><div class="swatch-name">Petal</div><div class="swatch-hex">#FFB3C1</div><div class="swatch-role">Soft accents</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--cloud)"></div><div class="swatch-info"><div class="swatch-name">Cloud</div><div class="swatch-hex">#FFF0F3</div><div class="swatch-role">Tinted backgrounds, chips</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--deep)"></div><div class="swatch-info"><div class="swatch-name">Deep</div><div class="swatch-hex">#C7365A</div><div class="swatch-role">Gradient dark anchor</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--wine)"></div><div class="swatch-info"><div class="swatch-name">Wine</div><div class="swatch-hex">#9D1E42</div><div class="swatch-role">Hover/pressed states</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--bk)"></div><div class="swatch-info"><div class="swatch-name">Black</div><div class="swatch-hex">#121212</div><div class="swatch-role">Primary text, dark buttons</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--bg)"></div><div class="swatch-info"><div class="swatch-name">Fog</div><div class="swatch-hex">#FAFAFA</div><div class="swatch-role">App background</div></div></div>
+  </div>
+
+  <h3 style="margin-top:40px">Semantic colours</h3>
+  <div class="grid g4">
+    <div class="swatch"><div class="swatch-colour" style="background:var(--grn)"></div><div class="swatch-info"><div class="swatch-name">Green</div><div class="swatch-hex">#22C55E</div><div class="swatch-role">Score 8+, success, sent</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--amb)"></div><div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#F59E0B</div><div class="swatch-role">Score 5-7, reached out</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--red)"></div><div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-hex">#EF4444</div><div class="swatch-role">Score &lt;5, errors, sign out</div></div></div>
+    <div class="swatch"><div class="swatch-colour" style="background:var(--blue)"></div><div class="swatch-info"><div class="swatch-name">Blue</div><div class="swatch-hex">#2563EB</div><div class="swatch-role">Links, info states</div></div></div>
+  </div>
+</div>
+
+<!-- ═══ TYPOGRAPHY ═══ -->
+<div class="sec" id="type">
+  <div class="sec-label">02 — Typography</div>
+  <h2>Type system</h2>
+  <p>Helvetica Neue. Clean, universal, confident. Weight does the heavy lifting — 800 for impact, 300 for everything else. No in-between.</p>
+
+  <div class="type-specimen">
+    <div class="type-big">Aa</div>
+    <div class="type-meta">Helvetica Neue · 800 · -3px tracking</div>
+  </div>
+
+  <div class="type-specimen">
+    <div class="type-big" style="font-weight:300;letter-spacing:-2px">Aa</div>
+    <div class="type-meta">Helvetica Neue · 300 · -2px tracking</div>
+  </div>
+
+  <h3 style="margin-top:40px">Weight scale</h3>
+  <div class="weight-row"><span style="font-weight:800">Extra Bold</span><span>800 — Headlines, numbers, scores, CTAs</span></div>
+  <div class="weight-row"><span style="font-weight:700">Bold</span><span>700 — Section titles, labels, company names</span></div>
+  <div class="weight-row"><span style="font-weight:600">Semi Bold</span><span>600 — Buttons, chips, contact names, nav</span></div>
+  <div class="weight-row"><span style="font-weight:500">Medium</span><span>500 — Card metadata, subtle emphasis</span></div>
+  <div class="weight-row"><span style="font-weight:300">Light</span><span>300 — Body text, descriptions, messages</span></div>
+
+  <h3 style="margin-top:40px">Size scale</h3>
+  <div class="scale-row"><div class="scale-size">48px</div><div class="scale-weight">800</div><div class="scale-sample" style="font-size:48px;font-weight:800;letter-spacing:-2px">Hero headline</div></div>
+  <div class="scale-row"><div class="scale-size">28px</div><div class="scale-weight">800</div><div class="scale-sample" style="font-size:28px;font-weight:800;letter-spacing:-1px">Paywall headline</div></div>
+  <div class="scale-row"><div class="scale-size">22px</div><div class="scale-weight">800</div><div class="scale-sample" style="font-size:22px;font-weight:800;letter-spacing:-.5px">Screen titles</div></div>
+  <div class="scale-row"><div class="scale-size">20px</div><div class="scale-weight">800</div><div class="scale-sample" style="font-size:20px;font-weight:800;letter-spacing:-.5px">Card company name</div></div>
+  <div class="scale-row"><div class="scale-size">15px</div><div class="scale-weight">300</div><div class="scale-sample" style="font-size:15px;font-weight:300">Body text — descriptions and messages</div></div>
+  <div class="scale-row"><div class="scale-size">13px</div><div class="scale-weight">300</div><div class="scale-sample" style="font-size:13px;font-weight:300;color:var(--lt)">Secondary text — card details and metadata</div></div>
+  <div class="scale-row"><div class="scale-size">11px</div><div class="scale-weight">700</div><div class="scale-sample" style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lt)">Section labels — uppercase, tracked</div></div>
+  <div class="scale-row"><div class="scale-size">9px</div><div class="scale-weight">600</div><div class="scale-sample" style="font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--coral)">Badges — status, category pills</div></div>
+</div>
+
+<!-- ═══ SHAPE & SPACE ═══ -->
+<div class="sec" id="shape">
+  <div class="sec-label">03 — Shape & space</div>
+  <h2>Radius system</h2>
+  <p>Ping is rounded. Soft. Approachable. No sharp corners anywhere. The radius scale creates visual hierarchy — bigger elements get bigger curves.</p>
+
+  <div class="radius-row">
+    <div class="radius-box" style="border-radius:28px">28px<br><span style="color:var(--mid);font-size:8px">Swipe cards</span></div>
+    <div class="radius-box" style="border-radius:24px">24px<br><span style="color:var(--mid);font-size:8px">Cards, modals</span></div>
+    <div class="radius-box" style="border-radius:20px">20px<br><span style="color:var(--mid);font-size:8px">Inner hero</span></div>
+    <div class="radius-box" style="border-radius:16px">16px<br><span style="color:var(--mid);font-size:8px">Buttons, inputs</span></div>
+    <div class="radius-box" style="border-radius:14px">14px<br><span style="color:var(--mid);font-size:8px">List items</span></div>
+    <div class="radius-box" style="border-radius:999px">999px<br><span style="color:var(--mid);font-size:8px">Pills, chips</span></div>
+    <div class="radius-box" style="border-radius:50%">50%<br><span style="color:var(--mid);font-size:8px">Avatars</span></div>
+  </div>
+
+  <h3>Spacing scale</h3>
+  <p>Base unit: 4px. Everything aligns to multiples of 4.</p>
+  <div style="margin-bottom:32px">
+    <div class="space-row"><div class="space-label">4px</div><div class="space-bar" style="width:4px"></div><div class="space-val">xs</div></div>
+    <div class="space-row"><div class="space-label">8px</div><div class="space-bar" style="width:8px"></div><div class="space-val">sm</div></div>
+    <div class="space-row"><div class="space-label">12px</div><div class="space-bar" style="width:12px"></div><div class="space-val">md</div></div>
+    <div class="space-row"><div class="space-label">16px</div><div class="space-bar" style="width:16px"></div><div class="space-val">lg</div></div>
+    <div class="space-row"><div class="space-label">20px</div><div class="space-bar" style="width:20px"></div><div class="space-val">xl</div></div>
+    <div class="space-row"><div class="space-label">24px</div><div class="space-bar" style="width:24px"></div><div class="space-val">2xl</div></div>
+    <div class="space-row"><div class="space-label">32px</div><div class="space-bar" style="width:32px"></div><div class="space-val">3xl</div></div>
+    <div class="space-row"><div class="space-label">48px</div><div class="space-bar" style="width:48px"></div><div class="space-val">4xl</div></div>
+  </div>
+
+  <h3>Minimum touch targets</h3>
+  <p>All interactive elements meet 48×48px minimum. Buttons are 52px height. Chips are 42px. Links have 44px hit areas.</p>
+</div>
+
+<!-- ═══ COMPONENTS ═══ -->
+<div class="sec" id="components">
+  <div class="sec-label">04 — Components</div>
+  <h2>Component library</h2>
+  <p>The building blocks of Ping. Every component uses the same colour, radius, and typography tokens.</p>
+
+  <div class="comp">
+    <div class="comp-label">Buttons</div>
+    <div class="btn-row">
+      <button class="btn btn-coral">Primary</button>
+      <button class="btn btn-grad">Gradient</button>
+      <button class="btn btn-dark">Dark</button>
+      <button class="btn btn-outline">Outline</button>
+      <button class="btn btn-ghost">Ghost</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-coral btn-sm">Small primary</button>
+      <button class="btn btn-dark btn-sm">Small dark</button>
+      <button class="btn btn-outline btn-sm">Small outline</button>
+    </div>
+  </div>
+
+  <div class="comp">
+    <div class="comp-label">Chips & pills</div>
+    <div class="chip-row">
+      <span class="chip chip-coral">Design</span>
+      <span class="chip chip-coral">UI/UX</span>
+      <span class="chip chip-coral">Brand ×</span>
+      <span class="chip chip-blush">Coral tint</span>
+      <span class="chip chip-outline">Outline</span>
+      <span class="chip chip-dark">Dark</span>
+    </div>
+    <div class="chip-row">
+      <span class="chip chip-coral btn-sm" style="font-size:9px;letter-spacing:.5px;text-transform:uppercase">Pinged</span>
+      <span class="chip btn-sm" style="font-size:9px;letter-spacing:.5px;text-transform:uppercase;background:rgba(34,197,94,.15);color:var(--grn)">Replied</span>
+      <span class="chip btn-sm" style="font-size:9px;letter-spacing:.5px;text-transform:uppercase;background:rgba(245,158,11,.15);color:var(--amb)">Reached out</span>
+      <span class="chip btn-sm" style="font-size:9px;letter-spacing:.5px;text-transform:uppercase;background:var(--cloud);color:var(--coral)">To-do</span>
+    </div>
+  </div>
+
+  <div class="comp">
+    <div class="comp-label">Score bars</div>
+    <div class="score-demo"><div class="score-bar"><div class="score-fill" style="width:91%;background:var(--grn)"></div></div><div class="score-num" style="color:var(--grn)">9.1</div></div>
+    <div class="score-demo"><div class="score-bar"><div class="score-fill" style="width:72%;background:var(--amb)"></div></div><div class="score-num" style="color:var(--amb)">7.2</div></div>
+    <div class="score-demo"><div class="score-bar"><div class="score-fill" style="width:42%;background:var(--red)"></div></div><div class="score-num" style="color:var(--red)">4.2</div></div>
+  </div>
+
+  <div class="comp">
+    <div class="comp-label">Cards</div>
+    <div class="grid g3">
+      <div class="card-demo"><div class="card-demo-hero grad-anim">K</div><div class="card-demo-body"><h4>Kōso Ferments</h4><p>Melbourne · New registration</p></div></div>
+      <div class="card-demo"><div class="card-demo-hero" style="background:linear-gradient(135deg,#A78BFA,#7C3AED)">A</div><div class="card-demo-body"><h4>Aether Robotics</h4><p>Sydney · $2.4M seed</p></div></div>
+      <div class="card-demo"><div class="card-demo-hero" style="background:linear-gradient(135deg,#34D399,#059669)">V</div><div class="card-demo-body"><h4>Verra Skincare</h4><p>Brisbane · CMO departure</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOGO ═══ -->
+<div class="sec" id="logo">
+  <div class="sec-label">05 — Logo</div>
+  <h2>Logo usage</h2>
+  <p>The Ping mark is a stylised arrow loop — representing the cycle of opportunity discovery. It always appears as a single-colour mark, never outlined or modified.</p>
+
+  <div class="logo-grid">
+    <div class="logo-box" style="background:var(--coral)"><svg viewBox="0 0 215.54 197.68" fill="white"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg><div class="logo-box-label">White on Coral</div></div>
+    <div class="logo-box" style="background:var(--wh)"><svg viewBox="0 0 215.54 197.68" fill="#121212"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg><div class="logo-box-label" style="color:var(--mid)">Black on White</div></div>
+    <div class="logo-box" style="background:var(--bk)"><svg viewBox="0 0 215.54 197.68" fill="white"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg><div class="logo-box-label">White on Black</div></div>
+    <div class="logo-box" style="background:var(--bk)"><svg viewBox="0 0 215.54 197.68" fill="#FF4D6D"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg><div class="logo-box-label">Coral on Black</div></div>
+  </div>
+
+  <h3>Clear space</h3>
+  <p>Minimum clear space around the logo equals the height of the arrow loop portion of the mark. Never crowd the logo with text or other elements.</p>
+
+  <h3>Don'ts</h3>
+  <p style="color:var(--red)">Never rotate the logo. Never apply drop shadows. Never use colours outside the approved palette. Never stretch or distort. Never place on busy photography without a solid background.</p>
+</div>
+
+<!-- ═══ MOTION ═══ -->
+<div class="sec" id="motion">
+  <div class="sec-label">06 — Motion</div>
+  <h2>Motion principles</h2>
+  <p>Ping feels alive. Every interaction has response. Movement is fast, bouncy, and confident — never sluggish or robotic.</p>
+
+  <h3>Easing curves</h3>
+  <div style="margin-bottom:24px">
+    <div class="weight-row"><span style="font-size:14px;width:200px">Spring bounce</span><span>cubic-bezier(0.34, 1.56, 0.64, 1) — card snaps, modal opens, chip selects</span></div>
+    <div class="weight-row"><span style="font-size:14px;width:200px">Smooth out</span><span>cubic-bezier(0.25, 1, 0.5, 1) — screen transitions, card fly-out</span></div>
+    <div class="weight-row"><span style="font-size:14px;width:200px">Gradient shift</span><span>8s ease infinite — animated gradient background-position cycle</span></div>
+  </div>
+
+  <h3>Interactive demo</h3>
+  <p style="margin-bottom:16px">Hover these boxes to feel the easing curves:</p>
+  <div class="motion-demo">
+    <div class="motion-box" style="display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">Spring</div>
+    <div class="motion-box" style="display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">Smooth</div>
+    <div class="motion-box" style="display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">Ease</div>
+  </div>
+
+  <h3>Duration guide</h3>
+  <div class="weight-row"><span style="font-size:14px;width:200px">100-150ms</span><span>Button press, chip toggle, hover states</span></div>
+  <div class="weight-row"><span style="font-size:14px;width:200px">250-350ms</span><span>Screen transitions, card swipe commit, modal open</span></div>
+  <div class="weight-row"><span style="font-size:14px;width:200px">450ms</span><span>Card spring-back (below swipe threshold)</span></div>
+  <div class="weight-row"><span style="font-size:14px;width:200px">800-1200ms</span><span>Confetti burst, splash screen pulse</span></div>
+</div>
+
+<!-- ═══ VOICE & TONE ═══ -->
+<div class="sec" id="voice">
+  <div class="sec-label">07 — Voice & tone</div>
+  <h2>How Ping speaks</h2>
+  <p>Ping is a sharp, confident friend who happens to know everyone in business. Not a corporate tool. Not a pushy salesperson. A trusted insider.</p>
+
+  <h3>Voice attributes</h3>
+  <div class="grid g3" style="margin-bottom:32px">
+    <div class="comp" style="text-align:center"><div style="font-size:28px;margin-bottom:8px">🎯</div><strong>Direct</strong><p style="font-size:13px;color:var(--lt);margin:4px 0 0">No fluff. Lead with the value. Every word earns its place.</p></div>
+    <div class="comp" style="text-align:center"><div style="font-size:28px;margin-bottom:8px">🤝</div><strong>Warm</strong><p style="font-size:13px;color:var(--lt);margin:4px 0 0">Friendly but not casual. Supportive but not soft. Peer-to-peer.</p></div>
+    <div class="comp" style="text-align:center"><div style="font-size:28px;margin-bottom:8px">⚡</div><strong>Urgent</strong><p style="font-size:13px;color:var(--lt);margin:4px 0 0">Pings are time-sensitive. The language creates healthy FOMO without manipulation.</p></div>
+  </div>
+
+  <h3>Do & don't</h3>
+  <div class="voice-grid">
+    <div class="voice-card voice-do"><h4>✓ Do</h4><p>"Land clients before they need you"</p></div>
+    <div class="voice-card voice-dont"><h4>✗ Don't</h4><p>"Our AI-powered platform leverages cutting-edge technology to facilitate lead generation"</p></div>
+    <div class="voice-card voice-do"><h4>✓ Do</h4><p>"5 pings left today"</p></div>
+    <div class="voice-card voice-dont"><h4>✗ Don't</h4><p>"You have 5 remaining lead credits in your daily allocation"</p></div>
+    <div class="voice-card voice-do"><h4>✓ Do</h4><p>"Why this matches you, Gray"</p></div>
+    <div class="voice-card voice-dont"><h4>✗ Don't</h4><p>"Based on your profile configuration, our matching algorithm has determined relevance"</p></div>
+    <div class="voice-card voice-do"><h4>✓ Do</h4><p>"Swipe. Ping. Win the client."</p></div>
+    <div class="voice-card voice-dont"><h4>✗ Don't</h4><p>"Utilize our intuitive swipe interface to interact with matched opportunities"</p></div>
+  </div>
+</div>
+
+<div class="ft">
+  © 2026 Ping · Brand System v1.0 · Melbourne, Australia
+</div>
+
+</body>
+</html>

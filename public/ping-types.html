@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ping — Ping Types | How we find your next client</title>
+<meta name="description" content="The 6 types of buying signals Ping detects — new registrations, funding rounds, leadership changes, and more.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root{--coral:#FF4D6D;--rose:#FF6B81;--blush:#FF8FA3;--cloud:#FFF0F3;--deep:#C7365A;--bk:#121212;--mid:#555;--lt:#999;--rl:#eee;--bg:#FAFAFA;--wh:#fff;--grn:#22c55e;--amb:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Helvetica Neue',Helvetica,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--bk);line-height:1.5}
+a{color:var(--coral);text-decoration:none}a:hover{text-decoration:underline}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--rl);padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--bk);text-decoration:none}
+.nav-logo svg{width:20px;fill:var(--coral)}
+.nav-back{font-size:13px;font-weight:500;color:var(--lt)}
+.hero{padding:100px 24px 48px;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px}
+.hero h1 i{font-style:normal;color:var(--coral)}
+.hero p{font-size:18px;font-weight:300;color:var(--mid);max-width:560px;line-height:1.55}
+.content{max-width:800px;margin:0 auto;padding:0 24px 80px}
+.stat-row{display:flex;gap:12px;margin-bottom:40px}
+.stat-box{flex:1;background:var(--wh);border-radius:20px;padding:24px;text-align:center;border:1px solid var(--rl)}
+.stat-num{font-size:36px;font-weight:800;color:var(--coral);letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--lt);margin-top:4px}
+@media(max-width:600px){.stat-row{flex-direction:column}}
+.type-card{background:var(--wh);border-radius:24px;padding:28px;margin-bottom:16px;border:1px solid var(--rl);transition:border-color .2s}
+.type-card:hover{border-color:var(--coral)}
+.type-icon{font-size:32px;margin-bottom:12px}
+.type-card h3{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
+.type-card .tag{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:12px}
+.type-card p{font-size:14px;font-weight:300;color:var(--mid);line-height:1.6;margin-bottom:16px}
+.type-card h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lt);margin-bottom:8px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bar-label{font-size:12px;font-weight:500;width:90px;flex-shrink:0;color:var(--mid)}
+.bar-track{flex:1;height:8px;background:var(--rl);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1s ease}
+.bar-val{font-size:11px;font-weight:800;width:28px;text-align:right}
+.source-card{background:var(--cloud);border-radius:16px;padding:16px;margin-top:12px}
+.source-card strong{font-size:13px;color:var(--coral)}
+.source-card span{font-size:12px;color:var(--mid);display:block;margin-top:2px}
+.section{padding-top:48px;margin-top:48px;border-top:1px solid var(--rl)}
+.section h2{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:8px}
+.section p{font-size:15px;font-weight:300;color:var(--mid);max-width:600px;margin-bottom:24px}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:24px}
+.ind-chip{background:var(--wh);border:1px solid var(--rl);border-radius:12px;padding:12px;font-size:13px;font-weight:500;text-align:center}
+.ft{padding:40px 24px;text-align:center;font-size:12px;color:var(--lt);border-top:1px solid var(--rl);margin-top:40px}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo"><svg viewBox="0 0 215.54 197.68"><path d="M152.75,37.23c-11.87,2.72-17.46,20.48-20.58,32.08l-37.1.11C101.58,36.59,112.81,3.22,151.65.19c33-2.58,61.56,21.55,63.76,54.26,2.2,32.6-23.12,61.97-57.05,62.04l-109.67.24-.33,21.26L0,98.45l48.37-39.6.34,21.33,109.7-.1c13.32-.01,22-12.58,20.54-24.25-1.58-12.69-13.34-21.54-26.21-18.6Z"/><path d="M53.67,159.31c17.48-4.98,22.58-15.91,28.45-31.83l37.63.03c-8.55,31.77-21.39,55.74-53.75,65.99-11.26,3.05-22.71,4.37-34.54,4.14l-31.32-.6-.09-36.24,33.42.47c6.81.1,13.58-.84,20.2-1.97Z"/></svg>Ping</a>
+  <a href="/" class="nav-back">← Back to Ping</a>
+</nav>
+
+<div class="hero">
+  <h1>6 types of <i>buying signal</i></h1>
+  <p>Ping monitors public data sources across Australia 24/7 and detects 6 distinct buying signals — each indicating a company likely needs freelance help right now.</p>
+</div>
+
+<div class="content">
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">500+</div><div class="stat-label">Signals scanned daily</div></div>
+    <div class="stat-box"><div class="stat-num">50+</div><div class="stat-label">Qualified pings</div></div>
+    <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">Signal types</div></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">🏢</div>
+    <h3>New business registration</h3>
+    <span class="tag" style="background:#dcfce7;color:#16a34a">High volume · 20-40/day</span>
+    <p>A new ABN is registered with no website. The founder needs brand identity, web design, and digital presence from day one. These are the freshest leads in the market — nobody else knows they exist yet.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>ABR / OpenCorporates — daily bulk data extract of new Australian business registrations, cross-referenced with domain lookups to identify companies with no web presence.</span></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">🌐</div>
+    <h3>Domain purchased, no website</h3>
+    <span class="tag" style="background:#dbeafe;color:#2563eb">Medium volume · 10-15/day</span>
+    <p>A .com.au domain was registered in the last 48 hours but has no live site. Someone is building something and needs a web presence. Perfect for web designers, developers, and brand specialists.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>AusRegistry WHOIS zone file — daily download of new .com.au domain registrations, filtered against live site checks via HTTP HEAD requests.</span></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">💰</div>
+    <h3>Funding round announced</h3>
+    <span class="tag" style="background:#fef3c7;color:#d97706">Lower volume · 5-10/day</span>
+    <p>Seed round, Series A, or later funding has closed. The company now has budget and is scaling — typically hiring marketing and creative talent. These are the highest-value pings with engagement potential of $15-50K+.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>Crunchbase API + Google Alerts — funding announcements for Australian startups, filtered by industry relevance and hiring signals.</span></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">👋</div>
+    <h3>Leadership departure</h3>
+    <span class="tag" style="background:#fee2e2;color:#dc2626">Lower volume · 5-10/week</span>
+    <p>A CMO, CTO, or Creative Director has departed. The company has an immediate gap in creative/technical leadership and often needs freelance support to maintain output during the transition.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>Google Alerts + LinkedIn monitoring — keyword tracking for "CMO departure", "creative director leaving", filtered by Australian companies.</span></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">📋</div>
+    <h3>Hiring creative/tech roles</h3>
+    <span class="tag" style="background:#dcfce7;color:#16a34a">High volume · 15-25/day</span>
+    <p>Company posted a job for a designer, developer, marketer, or creative role. This signals active budget and immediate need — and many companies are open to freelancers alongside or instead of full-time hires.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>Seek, Indeed, Jooble RSS feeds — filtered for creative and technical roles, cross-referenced with company size and industry.</span></div>
+  </div>
+
+  <div class="type-card">
+    <div class="type-icon">🔄</div>
+    <h3>Platform migration / rebrand</h3>
+    <span class="tag" style="background:#fef3c7;color:#d97706">Lower volume · 3-5/week</span>
+    <p>Company is switching tech platforms, undergoing a rebrand, or launching a new product line. These signals indicate active project budgets and specialist freelance needs.</p>
+    <h4>Typical score breakdown</h4>
+    <div class="bar-row"><div class="bar-label">Freshness</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.0</div></div>
+    <div class="bar-row"><div class="bar-label">Budget</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">2.0</div></div>
+    <div class="bar-row"><div class="bar-label">Skill match</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Urgency</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="bar-row"><div class="bar-label">Reachability</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--amb)"></div></div><div class="bar-val" style="color:var(--amb)">1.5</div></div>
+    <div class="source-card"><strong>Data source:</strong> <span>Google Alerts + job postings — keywords like "rebrand", "platform migration", "new website", filtered by Australian companies with active hiring.</span></div>
+  </div>
+
+  <div class="section">
+    <h2>Industries we cover</h2>
+    <p>Ping matches pings across every freelance discipline. Whatever your skill, we find companies that need you.</p>
+    <div class="ind-grid">
+      <div class="ind-chip">🎨 Design</div>
+      <div class="ind-chip">💻 Development</div>
+      <div class="ind-chip">📣 Marketing</div>
+      <div class="ind-chip">✍️ Copywriting</div>
+      <div class="ind-chip">🎬 Video</div>
+      <div class="ind-chip">📸 Photography</div>
+      <div class="ind-chip">📊 Strategy</div>
+      <div class="ind-chip">🤝 Consulting</div>
+      <div class="ind-chip">🖥️ Virtual Assistant</div>
+      <div class="ind-chip">📱 Social Media</div>
+      <div class="ind-chip">📝 Content Writing</div>
+      <div class="ind-chip">💼 Accounting</div>
+      <div class="ind-chip">📋 Project Mgmt</div>
+      <div class="ind-chip">💰 Sales</div>
+      <div class="ind-chip">🎭 Animation</div>
+      <div class="ind-chip">📈 Paid Ads</div>
+      <div class="ind-chip">🛒 Ecommerce</div>
+      <div class="ind-chip">🔍 SEO</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How scoring works</h2>
+    <p>Every ping is scored 0-10 across 5 dimensions by Claude AI. Only pings scoring above 4.0 make it to your feed.</p>
+    <div style="background:var(--wh);border-radius:20px;padding:24px;border:1px solid var(--rl)">
+      <div class="bar-row"><div class="bar-label" style="width:110px"><strong>Freshness</strong></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">/2</div></div>
+      <p style="font-size:12px;color:var(--lt);margin:4px 0 14px 0">How recent is the trigger? Newer = higher score. Signals older than 48h score below 1.0.</p>
+      <div class="bar-row"><div class="bar-label" style="width:110px"><strong>Budget</strong></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">/2</div></div>
+      <p style="font-size:12px;color:var(--lt);margin:4px 0 14px 0">How likely is there freelance budget? Funding rounds and active hiring score highest.</p>
+      <div class="bar-row"><div class="bar-label" style="width:110px"><strong>Skill match</strong></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">/2</div></div>
+      <p style="font-size:12px;color:var(--lt);margin:4px 0 14px 0">How closely does this match your profile? Direct matches score 2.0, adjacent skills 1.5.</p>
+      <div class="bar-row"><div class="bar-label" style="width:110px"><strong>Urgency</strong></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">/2</div></div>
+      <p style="font-size:12px;color:var(--lt);margin:4px 0 14px 0">How time-sensitive? No website + new registration = maximum urgency.</p>
+      <div class="bar-row"><div class="bar-label" style="width:110px"><strong>Reachability</strong></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="width:100%;background:var(--grn)"></div></div><div class="bar-val" style="color:var(--grn)">/2</div></div>
+      <p style="font-size:12px;color:var(--lt);margin:4px 0 0 0">How accessible is the decision-maker? Email + LinkedIn = 2.0, single channel = 1.0-1.5.</p>
+    </div>
+  </div>
+</div>
+
+<div class="ft">© 2026 Ping · Melbourne, Australia · <a href="/">Home</a> · <a href="/docs.html">Docs</a> · <a href="/brand.html">Brand</a></div>
+<script>
+// Animate bars on scroll
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-fill').forEach(function(bar) {
+        var w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(function() { bar.style.width = w; }, 100);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.type-card, .section').forEach(function(card) { observer.observe(card); });
+</script>
+</body>
+</html>
